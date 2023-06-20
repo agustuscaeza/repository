@@ -1,4 +1,4 @@
-package my.utem.edu.ftmk.dad.luggageTrackingModule.controller;
+	package my.utem.edu.ftmk.dad.luggageTrackingModule.controller;
 
 import java.util.Arrays;
 import java.util.List;
@@ -46,7 +46,7 @@ public class Checkpoint3MenuController {
 		model.addAttribute("checkpoints3", checkpointList3);
 		
 		// returning HTML file
-		return "checkpoint3";
+		return "checkpoints3";
 		
 	}
 	@RequestMapping("/cp3/save")

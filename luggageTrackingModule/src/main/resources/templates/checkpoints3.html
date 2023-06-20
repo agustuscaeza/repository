@@ -59,25 +59,25 @@
         </thead>
         <tbody>
           <tr th:each="checkpoint3 : ${checkpoints3}">
-            <th scope="row">[[${checkpoint3.TruckID}]]</th>
-            <td>[[${checkpoint3.getLuggageID()}]]</td>
-            <td>[[${checkpoint3.getDate()}]]</td>
-            <td>[[${checkpoint3.getTime()}]]</td>
+            <th scope="row">[[${checkpoint3.getTruck().getTruckID()}]]</th>		
+            <td>[[${checkpoint3.getLuggage().getLuggageID()}]]</td>
+            <td>[[${checkpoint3.getCp3Date()}]]</td>
+            <td>[[${checkpoint3.getCp3Time()}]]</td>
             
-            <td>
-              <!-- A link to edit an checkpoint3 -->
-              <a th:href="@{'/checkpoint3/' + ${checkpoint3.TruckID}}" 
-              	title="Edit this TruckID"
-                class="fa-regular fa-pen-to-square icon-dark"></a>
-              &nbsp;
+<!--             <td> -->
+<!--               A link to edit an checkpoint3 -->
+<!--               <a th:href="@{'/checkpoint3/' + ${checkpoint3.getTruck().TruckID()}}"  -->
+<!--               	title="Edit this TruckID" -->
+<!--                 class="fa-regular fa-pen-to-square icon-dark"></a> -->
+<!--               &nbsp; -->
               
-              <!-- A link to delete an checkpoint3 -->
-              <a th:href="@{'/checkpoint3/delete/' + ${checkpoint3.TruckID}}" 
-              th:TruckID="${checkpoint3.TruckID}" id="btnDelete"
-                title="Delete this TruckID" 
-                class="fa-regular fa-trash-can icon-dark btn-delete"></a>
+<!--               A link to delete an checkpoint3 -->
+<!--               <a th:href="@{'/checkpoint3/delete/' + ${checkpoint3.getTruck().TruckID()}}"  -->
+<!--               th:TruckID="${checkpoint3.getTruck().TruckID()}}" id="btnDelete" -->
+<!--                 title="Delete this TruckID"  -->
+<!--                 class="fa-regular fa-trash-can icon-dark btn-delete"></a> -->
 
-            </td> 
+<!--             </td>  -->
           </tr>
         </tbody>
       </table>
