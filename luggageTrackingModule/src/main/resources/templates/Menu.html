@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+  <title>Main Menu</title>
+
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  
+  <style>
+    body {
+      background-color: #f0f0f0;
+      color: #333333;
+    }
+    
+    .container-fluid {
+      background-color: #ffffff;
+      padding: 20px;
+    }
+    
+    h2 {
+      color: #337ab7;
+    }
+    
+    .btn-primary {
+      background-color: #337ab7;
+      border-color: #337ab7;
+    }
+    
+    .btn-primary:hover,
+    .btn-primary:focus {
+      background-color: #286090;
+      border-color: #204d74;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <a class="navbar-brand" th:href="@{/menu/list}"></a>
+
+    <h2 class="text-center">Main Menu</h2>
+    <a class="navbar-brand" th:href="@{/menu/list}"></a>
+
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-6">
+        <div class="text-center">
+          <h3>Choose an option:</h3>
+          <div class="mt-4">
+            <a th:href="@{/passenger/0}" class="btn btn-primary btn-lg">CHECK-IN LUGGAGE</a>
+          </div>
+          <div class="mt-4">
+            <a th:href="@{/trackingrecord/list}" class="btn btn-primary btn-lg">VIEW TRACKING RECORDS</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+  <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+
+</html>

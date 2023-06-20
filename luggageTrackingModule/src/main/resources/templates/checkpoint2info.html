@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+  <title>REST Consumer</title>
+
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+  <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+  <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+  <script type= "text/javascript">
+  function checkCp1Id (){
+  	window.location.href=window.location.pathname+"?checkPoint1="+ document.getElementById('cp1').value;
+  }
+  function validateCP1Id(event){
+  	if(document.getElementById('checkpoint1idvalue').value == '0'){
+  		event.preventDefault();
+  		alert('error')
+  	}
+  }
+  </script>
+</head>
+
+<body>
+  <div th:replace="fragments/header :: header"></div>
+
+  <div class="container-fluid">
+    <h2 class="text-center">[[${pageTitle}]]</h2>
+
+    <div class="my-3">
+      <form th:action="@{/cp2/save}" method="post" enctype="multipart/form-data" th:object="${checkpoint2}"
+        style="max-width: 550px; margin: 0 auto">
+
+        <input type="hidden" th:field="*{Cp2ID}" />
+
+        <div class="p-3">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="cp2Date">Date</label>
+            <div class="col-sm-9">
+              <input type="text"  id="cp2Date" class="form-control" disabled />
+            </div>
+          </div> 
+          
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="cp2Time">Time</label>
+            <div class="col-sm-9">
+              <input type="text" id="cp2Time" class="form-control" disabled />
+            </div>
+          </div> 
+          
+          <script>
+			  // Get the current date and time
+			  var currentDate = new Date().toLocaleDateString();
+			  var currentTime = new Date().toLocaleTimeString();
+			
+			  // Set the values in the HTML input fields
+			  document.getElementById("cp2Date").value = currentDate;
+			  document.getElementById("cp2Time").value = currentTime;
+		</script>
+        
+ 
+          <div class="form-group row">
+ 			 <label class="col-sm-3 col-form-label" for="conveyorlane">Conveyor Lane</label>
+  			 <div class="col-sm-9">
+  			 	
+    		<select name="conveyorlane" id="conveyorlane" th:field="*{conveyorlane.conveyorLaneID}" required>
+      			<option th:each="conveyorlane : ${lanes}"
+              		th:value="${conveyorlane.conveyorLaneID}"
+              		th:text="${conveyorlane.getLaneNumber()}"
+			     />
+			   </select>
+			 </div>
+		</div>
+
+          
+         <div class="form-group row">
+ 			 <label class="col-sm-3 col-form-label" for="luggage">Passenger Name</label>
+  			 <div class="col-sm-9">
+  			 	
+    		<select name="luggage" id="luggage" th:field="*{luggage.LuggageID}" required>
+      			<option th:each="luggage : ${luggages}"
+              		th:value="${luggage.luggageID}"
+              		th:text="${luggage.passenger.getName()}"
+              		
+			     />
+			   </select>
+			 </div>
+		</div> 
+		
+          <div class="text-center">
+            <input type="submit" value="Save" class="btn btn-primary btn-sm mr-2" />
+            <input type="button" value="Cancel" id="btnCancel" class="btn btn-secondary btn-sm" />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div th:replace="fragments/footer :: footer"></div>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("#btnCancel").on("click", function () {
+        window.location = "[[@{/cp2/list}]]";
+      });
+    });
+  </script>
+  
+</body>
+
+</html>

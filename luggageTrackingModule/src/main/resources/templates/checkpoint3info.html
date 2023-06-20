@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+  <title>REST Consumer</title>
+
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+  <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+  <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+  
+</head>
+<body>
+  <div th:replace="fragments/header :: header"></div>
+
+  <div class="container-fluid">
+    <h2 class="text-center">[[${pageTitle}]]</h2>
+
+    <div class="my-3">
+      <form th:action="@{/cp3/save}" method="post" enctype="multipart/form-data" th:object="${checkpoint3}"
+        style="max-width: 550px; margin: 0 auto">
+
+        <input type="hidden" th:field="*{cp3ID}" >
+        
+        <div class="p-3">
+        
+            
+<!--             <div class="form-group row"> -->
+<!--             <label class="col-sm-3 col-form-label" for="*{TruckID}">Truck ID</label> -->
+<!--             <div class="col-sm-9"> -->
+<!--               <input type="text" th:field="*{TruckID}" required minlength="1" maxlength="3" class="form-control" -->
+<!--                 id="TruckID" /> -->
+<!--             </div> -->
+<!--             </div> -->
+            
+            <div class="form-group row">
+ 			 <label class="col-sm-3 col-form-label" for="shuttletruck">Truck ID</label>
+  			 <div class="col-sm-9">
+  			 	
+    		<select name="shuttletruck" id="shuttletruck" th:field="*{truck.TruckID}" required>
+      			<option th:each="shuttletruck : ${shuttletrucks}"
+              		th:value="${shuttletruck.TruckID}"
+              		th:text="${shuttletruck.getTruckID()}"
+			     />
+			   </select>
+			 </div>
+		</div>
+	
+<!--             <div class="form-group row"> -->
+<!--             <label class="col-sm-3 col-form-label" for="*{LuggageID}">Luggage ID</label> -->
+<!--             <div class="col-sm-9"> -->
+<!--               <input type="text" th:field="*{LuggageID}" required minlength="1" maxlength="3" class="form-control" -->
+<!--                 id="LuggageID" /> -->
+<!--             </div> -->
+<!--             </div> -->
+            
+            <div class="form-group row">
+ 			 <label class="col-sm-3 col-form-label" for="flight">Passenger Name</label>
+  			 <div class="col-sm-9">
+  			 	
+    		<select name="luggage" id="luggage" th:field="*{luggage.LuggageID}" required>
+      			<option th:each="luggage : ${luggages}"
+              		th:value="${luggage.LuggageID}"
+              		th:text="${luggage.passenger.getName()}"
+			     />
+			   </select>
+			 </div>
+		</div>
+		
+	
+		
+		
+          
+            
+<!--              <div class="form-group row"> -->
+<!--             <label class="col-sm-3 col-form-label" for="*{Date}">Date</label> -->
+<!--             <div class="col-sm-9"> -->
+<!--               <input type="text" th:field="*{Date}" required minlength="1" maxlength="100" class="form-control" -->
+<!--                 id="Date" /> -->
+<!--             </div> -->
+<!--             </div> -->
+            
+            <div class="form-group row">
+			    <label class="col-sm-3 col-form-label" for="cp3Date">Date</label>
+			    <div class="col-sm-9">
+			      <input type="text" id="cp3Date" class="form-control" disabled />
+			    </div>
+			  </div>
+            
+<!--              <div class="form-group row"> -->
+<!--             <label class="col-sm-3 col-form-label" for="*{Time}">Time</label> -->
+<!--             <div class="col-sm-9"> -->
+<!--               <input type="text" th:field="*{Time}" required minlength="1" maxlength="100" class="form-control" -->
+<!--                 id="Time" /> -->
+<!--             </div> -->
+<!--             </div> -->
+<!--           </div> -->
+          
+            <div class="form-group row">
+			    <label class="col-sm-3 col-form-label" for="cp3Time">Time</label>
+			    <div class="col-sm-9">
+			      <input type="text" id="cp3Time" class="form-control" disabled />
+			    </div>
+			  </div>
+			</div>
+          
+          <script>
+			  // Get the current date and time
+			  var currentDate = new Date().toLocaleDateString();
+			  var currentTime = new Date().toLocaleTimeString();
+			
+			  // Set the values in the HTML input fields
+			  document.getElementById("cp3Date").value = currentDate;
+			  document.getElementById("cp3Time").value = currentTime;
+			</script>
+          
+
+         <!--  <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="FlightName">Flight Name</label>
+            <div class="col-sm-9">
+              <input type="text" th:field="*{FlightName}" minlength="2" maxlength="256" class="form-control"
+                id="FlightName" />
+            </div>
+          </div> -->
+
+          <div class="text-center">
+            <input type="submit" value="Save" class="btn btn-primary btn-sm mr-2" />
+            <input type="button" value="Cancel" id="btnCancel" class="btn btn-secondary btn-sm" />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div th:replace="fragments/footer :: footer"></div>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("#btnCancel").on("click", function () {
+        window.location = "[[@{/cp3/list}]]";
+      });
+    });
+  </script>
+
+</body>
+
+</html>
